@@ -279,7 +279,28 @@ public class UI {
 			}
 		}
 		else if(titleScreenState == 3) {
+			g2.setColor(Color.white);
+			g2.setFont(g2.getFont().deriveFont(42F));
 			
+			String text = "Choose your saved game";
+			int x = getXforCenteredText(text);
+			int y = gp.tileSize*3;
+			g2.drawString(text, x, y);
+			
+			text = "Game saved 1";
+			x = gp.tileSize*2;
+			y+= gp.tileSize*2;
+			g2.drawString(text, x, y);
+			if(commandNum == 0) {
+				g2.drawString(">", x-gp.tileSize, y);
+			}
+			text = "Back";
+			x = getXforCenteredText(text);
+			y+= gp.tileSize*2;
+			g2.drawString(text, x, y);
+			if(commandNum == 1) {
+				g2.drawString(">", x-gp.tileSize, y);
+			}
 		}
 	}
 	public void drawPauseScreen() {
@@ -528,6 +549,7 @@ public class UI {
 		g2.drawRect(textX, textY, 120, 24);
 		volumeWidth = 24*gp.se.volumeScale;
 		g2.fillRect(textX, textY, volumeWidth, 24);
+		
 	}
 	public void drawSubWindow(int x, int y, int width, int height) {
 		
