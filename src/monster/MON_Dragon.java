@@ -17,7 +17,6 @@ public class MON_Dragon extends Entity{
 		speed = 1;
 		maxLife = 20;
 		life = maxLife;
-		projectile=new OBJ_DRAGONFIRE(gp);
 		solidArea.x = 3;
 		solidArea.y = 18;
 		solidArea.width = 42;
@@ -70,7 +69,7 @@ public class MON_Dragon extends Entity{
 			if (i>99 && projectile.alive==false )
 			{
 				projectile.set(worldX,worldY,direction,true,this);
-				gp.projectileList.add(projectile);
+				gp.projectiles.add(projectile);
 				
 			}
 	} 
