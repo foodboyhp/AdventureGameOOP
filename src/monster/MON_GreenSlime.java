@@ -34,12 +34,20 @@ public class MON_GreenSlime extends Entity {
 	public void getImage() {
 		down1 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
 		down2 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
+		down3 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
+		down4 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
 		up1 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
 		up2 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
+		up3 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
+		up4 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
 		left1 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
 		left2 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
+		left3 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
+		left4 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
 		right1 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
 		right2 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
+		right3 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
+		right4 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
 	}
 	public void setAction() {
 		actionLockCounter++;

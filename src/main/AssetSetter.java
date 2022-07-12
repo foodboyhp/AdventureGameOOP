@@ -1,7 +1,10 @@
 package main;
 
 import entity.NPC_Oldman;
+import monster.MON_Bear;
+import monster.MON_Dragon;
 import monster.MON_GreenSlime;
+import monster.MON_Snake;
 import object.OBJ_BOOTS;
 import object.OBJ_KEY;
 
@@ -35,12 +38,12 @@ public class AssetSetter {
 		gp.monster[mapNum][i].worldY = gp.tileSize*38;
 		i++;
 		
-		gp.monster[mapNum][i] = new MON_GreenSlime(gp);
+		gp.monster[mapNum][i] = new MON_Snake(gp);
 		gp.monster[mapNum][i].worldX = gp.tileSize*23;
 		gp.monster[mapNum][i].worldY = gp.tileSize*37;
 		i++;
 		
-		gp.monster[mapNum][i] = new MON_GreenSlime(gp);
+		gp.monster[mapNum][i] = new MON_Bear(gp);
 		gp.monster[mapNum][i].worldX = gp.tileSize*24;
 		gp.monster[mapNum][i].worldY = gp.tileSize*37;
 		i++;
