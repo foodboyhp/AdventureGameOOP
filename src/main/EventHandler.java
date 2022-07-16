@@ -53,8 +53,8 @@ public class EventHandler {
 		if(canTouchEvent== true) {
 			//if(hit(0,23,12,"up")==true) healingPool(gp.gameState);
 			if(hit(0,27,16,"right") == true) damagePit(gp.dialogueState);	
-			else if(hit(0,23,12, "any") == true) teleportPortal(1,12,13);
-			else if(hit(1,12,13, "any") == true) teleportPortal(0,23,12);
+			else if(hit(0, 38,40, "any") == true) {teleportPortal(1, 11, 13);System.out.print("1");}
+			
 		}
 		
 	}
@@ -102,6 +102,7 @@ public class EventHandler {
 	}
 	public void teleportPortal(int map, int col, int row) {
 		if(gp.keyH.enterPressed == true) {
+			
 			gp.currentMap = map;
 			gp.player.worldX = gp.tileSize*col;
 			gp.player.worldY = gp.tileSize*row;

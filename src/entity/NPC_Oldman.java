@@ -14,7 +14,7 @@ public class NPC_Oldman extends Entity {
 		super(gp);
 		direction = "down";
 		speed = 1;
-		
+		type = type_npc;
 		getImage();
 		setDialogue();
 	}
@@ -40,31 +40,41 @@ public class NPC_Oldman extends Entity {
 	
 	public void setAction() {
 		
-		actionLockCounter++;
-		
-		if(actionLockCounter==120) {
-			Random random = new Random();
-			int i = random.nextInt(100)+1;
-			
-			if(i<=25) {
-				direction = "up";
-			}
-			if(i>25&&i<=50) {
-				direction = "down";
-			}
-			if(i>50&&i<=75) {
-				direction = "left";
-			}
-			if(i>75 && i<=100) {
-				direction = "right";
-			}
-			
-			actionLockCounter = 0;
+		if(onPath==true) {
+//			int goalCol = (gp.player.worldX+gp.player.solidArea.x)/gp.tileSize;
+//			int goalRow = (gp.player.worldY+gp.player.solidArea.y)/gp.tileSize;
+//			searchPath(goalCol,goalRow);
 		}
+		else {
+			actionLockCounter++;
+			
+			if(actionLockCounter==120) {
+				Random random = new Random();
+				int i = random.nextInt(100)+1;
+				
+				if(i<=25) {
+					direction = "up";
+				}
+				if(i>25&&i<=50) {
+					direction = "down";
+				}
+				if(i>50&&i<=75) {
+					direction = "left";
+				}
+				if(i>75 && i<=100) {
+					direction = "right";
+				}
+				
+				actionLockCounter = 0;
+			}
+		}
+		
+		
 		
 	}
 	public void speak() {
 		super.speak();
+		//onPath = true;
 	}
     
 }

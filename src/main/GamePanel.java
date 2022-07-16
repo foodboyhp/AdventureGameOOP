@@ -15,6 +15,8 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
+import ai.PathFinder;
+
 public class GamePanel extends JPanel implements Runnable{
     //Screen Settings
     final int originalTileSize = 16;
@@ -39,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
     int FPS = 60;
     
     //System
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     Sound se = new Sound();
     Sound music = new Sound();
@@ -48,12 +50,13 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
     SaveGame saveGame = new SaveGame(this);
+    public PathFinder pFinder = new PathFinder(this);
     Thread gameThread;
     
     //Entity and object
-    public Player player = new Player(this,keyH);
-    public int currentPlayer = 0;
-    public Entity obj[][] = new Entity[maxMap][20];
+    public int currentPlayer;
+    public Player player;
+    public Entity obj[][] = new Entity[maxMap][50];
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity monster[][] = new Entity[maxMap][20];
     public ArrayList<Entity> projectiles = new ArrayList<>();
@@ -86,6 +89,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void setupGame() {
+    	player = new Player(this,keyH,currentPlayer);
     	aSetter.setObject();
     	aSetter.setNPC();
     	aSetter.setMonster();
@@ -98,6 +102,7 @@ public class GamePanel extends JPanel implements Runnable{
     	aSetter.setMonster();
     }
     public void restart() {
+    	player.setItem();
     	player.setDefaultValues();
     	aSetter.setObject();
     	aSetter.setNPC();
@@ -151,6 +156,7 @@ public class GamePanel extends JPanel implements Runnable{
     					monster[currentMap][i].update();    					
     				}
     				if(monster[currentMap][i].alive ==false) {
+    					monster[currentMap][i].checkDrop();
     					monster[currentMap][i] = null;   					
     				}
     			}

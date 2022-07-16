@@ -1,5 +1,6 @@
 package tile;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -18,6 +19,7 @@ public class TileManager {
 	GamePanel gp;
 	public Tile[] tile;
 	public int mapTileNum[][][];
+	boolean drawPath = true;
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
@@ -25,8 +27,9 @@ public class TileManager {
 		mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 		
 		getTileImage();
-		loadMap("/Map/worldV3.txt",0);
-		loadMap("/Map/interior01.txt", 1);
+		loadMap("/Map/Map1.txt",0);
+		loadMap("/Map/Map2.txt",1);
+		loadMap("/Map/Map3.txt",2);
 	}
 	
 	public void getTileImage() {
@@ -77,7 +80,7 @@ public class TileManager {
 		setup(42, "hut",false);
 		setup(43, "floor01",false);
 		setup(44, "table01", true);
-		
+		setup(45, "portal", false);
 		
 	}
 	
@@ -171,5 +174,16 @@ public class TileManager {
 				worldRow++;
 			}
 		}
+		/*if(drawPath==true) {
+			g2.setColor(new Color(255,0,0,70));
+			for(int i = 0; i < gp.pFinder.pathList.size();i++) {
+				int worldX = gp.pFinder.pathList.get(i).col*gp.tileSize;
+				int worldY = gp.pFinder.pathList.get(i).row*gp.tileSize;
+				int screenX = worldX-gp.player.worldX+gp.player.screenX;
+				int screenY = worldY-gp.player.worldY+gp.player.screenY;
+				
+				g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
+			}
+		}*/
 	}
 }
