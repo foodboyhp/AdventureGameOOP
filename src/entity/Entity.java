@@ -10,8 +10,8 @@ import java.awt.image.ShortLookupTable;
 
 import javax.imageio.ImageIO;
 
+import gameSetup.UtilityTool;
 import main.GamePanel;
-import main.UtilityTool;
 
 public class Entity {
 	GamePanel gp;
@@ -113,6 +113,9 @@ public class Entity {
     	
     }
     public void damageReact() {
+    	
+    }
+    public void getStatsOnDifficulty() {
     	
     }
     public void speak() {

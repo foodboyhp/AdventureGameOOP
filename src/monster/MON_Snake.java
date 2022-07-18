@@ -16,12 +16,7 @@ public class MON_Snake extends Entity{
 		
 		type = type_monster;
 		name = "Snake";
-		speed = 1;
-		maxLife = 20;
-		life = maxLife;
-		attack = 2;
-		defense = 0;
-		exp = 2;
+		getStatsOnDifficulty();
 		
 		solidArea.x = 3;
 		solidArea.y = 18;
@@ -42,6 +37,36 @@ public class MON_Snake extends Entity{
 		right1 = setup("/monster/Snake/SNAKE_RIGHT1", gp.tileSize, gp.tileSize);
 		right2 = setup("/monster/Snake/SNAKE_RIGHT2", gp.tileSize, gp.tileSize);
 	}
+    public void getStatsOnDifficulty() {
+    	speed = 2;
+		maxLife = 20;
+		life = maxLife;
+		attack = 3;
+		defense = 1;
+		exp = 2;
+		switch(gp.difficulty) {
+		case 0:
+			break;
+		case 1:
+			speed = (int)(1.5*speed);
+			maxLife = (int)(1.5*maxLife);
+			life = maxLife;
+			attack = (int)(1.5*attack);
+			defense = (int)(1.5*defense);
+			exp = (int)(1.5*exp);
+			break;
+		case 2:
+			speed = (int)(2*speed);
+			maxLife = (int)(2*maxLife);
+			life = maxLife;
+			attack = (int)(2*attack);
+			defense = (int)(2*defense);
+			exp = (int)(2*exp);
+			break;
+		default:
+			break;
+		}
+    }
     public void update() {
 		super.update();
 		
@@ -55,7 +80,7 @@ public class MON_Snake extends Entity{
 				onPath=true;
 			}
 		}
-		if(onPath==true&&tileDistance>=20) {
+		if(onPath==true&&tileDistance>=10) {
 			onPath=false;
 		}
 	}

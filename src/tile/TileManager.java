@@ -11,8 +11,8 @@ import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
+import gameSetup.UtilityTool;
 import main.GamePanel;
-import main.UtilityTool;
 
 public class TileManager {
 	

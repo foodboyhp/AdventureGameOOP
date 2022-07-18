@@ -17,12 +17,9 @@ public class MON_Dragon extends Entity{
 		
 		type = type_monster;
 		name = "Dragon";
-		speed = 1;
-		maxLife = 20;
-		life = maxLife;
-		attack = 2;
-		defense = 0;
-		exp = 2;
+		getStatsOnDifficulty();
+		projectile = new OBJ_DragonFire(gp);
+		projectile.attack = 10;
 		
 		solidArea.x = 3;
 		solidArea.y = 18;
@@ -30,9 +27,38 @@ public class MON_Dragon extends Entity{
 		solidArea.height = 30;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
-		projectile = new OBJ_DragonFire(gp);
 		
 		getImage();
+	}
+	public void getStatsOnDifficulty() {
+		speed = 2;
+		maxLife = 20;
+		life = maxLife;
+		attack = 2;
+		defense = 3;
+		exp = 7;
+		switch(gp.difficulty) {
+		case 0:
+			break;
+		case 1:
+			speed = (int)(1.5*speed);
+			maxLife = (int)(1.5*maxLife);
+			life = maxLife;
+			attack = (int)(1.5*attack);
+			defense = (int)(1.5*defense);
+			exp = (int)(1.5*exp);
+			break;
+		case 2:
+			speed = (int)(2*speed);
+			maxLife = (int)(2*maxLife);
+			life = maxLife;
+			attack = (int)(2*attack);
+			defense = (int)(2*defense);
+			exp = (int)(2*exp);
+			break;
+		default: 
+			break;
+		}
 	}
     public void getImage() {
 		down1 = setup("/monster/Drago/DRAGON_DOWN1", gp.tileSize, gp.tileSize);
@@ -57,7 +83,7 @@ public class MON_Dragon extends Entity{
 				onPath=true;
 			}
 		}
-		if(onPath==true&&tileDistance>=20) {
+		if(onPath==true&&tileDistance>=10) {
 			onPath=false;
 		}
 	}

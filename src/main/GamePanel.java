@@ -1,10 +1,17 @@
 
 package main;
 
-import main.KeyHandler;
 import tile.TileManager;
 import entity.Entity;
 import entity.Player;
+import gameSetup.AssetSetter;
+import gameSetup.CollisionCheck;
+import gameSetup.EventHandler;
+import gameSetup.KeyHandler;
+import gameSetup.SaveGame;
+import gameSetup.Sound;
+import gameSetup.UI;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -43,13 +50,13 @@ public class GamePanel extends JPanel implements Runnable{
     //System
     public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
-    Sound se = new Sound();
-    Sound music = new Sound();
+    public Sound se = new Sound();
+    public Sound music = new Sound();
     public CollisionCheck cChecker = new CollisionCheck(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
-    SaveGame saveGame = new SaveGame(this);
+    public SaveGame saveGame = new SaveGame(this);
     public PathFinder pFinder = new PathFinder(this);
     Thread gameThread;
     
@@ -145,11 +152,13 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
     	if(gameState==playState) {
     		player.update();
+    		
     		for(int i = 0;  i < npc[currentMap].length; i++) {
     			if(npc[currentMap][i] != null) {
     				npc[currentMap][i].update();
     			}
     		}
+    		
     		for(int i = 0;  i < monster[currentMap].length; i++) {
     			if(monster[currentMap][i] != null) {
     				if(monster[currentMap][i].alive ==true && monster[currentMap][i].died == false) {

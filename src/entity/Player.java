@@ -2,6 +2,8 @@
 package entity;
 
 import entity.Entity;
+import gameSetup.KeyHandler;
+import gameSetup.UtilityTool;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -17,8 +19,6 @@ import javax.imageio.ImageIO;
 import javax.print.attribute.standard.JobPriority;
 
 import main.GamePanel;
-import main.KeyHandler;
-import main.UtilityTool;
 import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
@@ -36,7 +36,7 @@ public class Player extends Entity{
     public final int inventorySize = 20;
     public int currentPlayer;
     public int currentMapAvailable;
-    public int numOfMonKilled[] = new int[3];
+    public int numOfMonKilled[] = {45,50,0};
     public final int map1Level = 5;
     public final int map2Level = 10;
    
@@ -65,17 +65,17 @@ public class Player extends Entity{
         worldY = gp.tileSize*21;
     	//worldX = gp.tileSize*12;
     	//worldY = gp.tileSize*13;
-        speed = 4;
         direction = "down";
         
         //Player Status
-        level = 1;
+        speed = 4;
+        level = 4;
         maxLife = 6;
         life = maxLife;
         maxMana = 4;
         mana = maxMana;
-        strength = 1;
-        dexterity = 1;
+        strength = 20;
+        dexterity = 999;
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
@@ -84,6 +84,7 @@ public class Player extends Entity{
         projectile = new OBJ_Fireball(gp);
         attack = getAttack();
         defense = getDefense();
+        
         
     }
     public void setDefaultPositions() {
@@ -446,6 +447,8 @@ public class Player extends Entity{
     			
     			if(gp.monster[gp.currentMap][i].life<=0) { 
     				gp.monster[gp.currentMap][i].died = true;
+    				numOfMonKilled[gp.currentMap]++;
+    				gp.aSetter.numOfCurrentMonster[gp.currentMap]--;
     				gp.ui.addMessage("Killed the " + gp.monster[gp.currentMap][i].name + "!");
     				exp+=gp.monster[gp.currentMap][i].exp;
     				gp.ui.addMessage("Exp + " + gp.monster[gp.currentMap][i].exp);
@@ -618,6 +621,11 @@ public class Player extends Entity{
     	else if(currentMapAvailable == 1) {
     		if(numOfMonKilled[1]>=50&&level>=10) {
     			currentMapAvailable=2;
+    		}
+    	}
+    	else if(currentMapAvailable == 2) {
+    		if(numOfMonKilled[2]>=1) {
+    			currentMapAvailable = 3;
     		}
     	}
     	return currentMapAvailable;
